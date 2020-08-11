@@ -9,6 +9,11 @@
  * Uses a 1 minute hopping window with 10 second advances to compute the 10 most viewed pages by viewtime for every value of gender
  * Once per minute produces a message into the top_pages topic that contains the gender, page id, sum of view time in the latest window and distinct count of user ids in the latest window
  
+ ## Environment
+ * Spark 2.4.0
+ * Scala 2.11.7
+ * JDK 1.8
+ 
  ## Solution Design
  To make it extensible, there is a main base class: `com.joyn.challenge.stream.core.StreamJob`, which is the base of every streaming
  task we might have. The main structure is as follows: 
@@ -214,9 +219,9 @@ case class TopPagesByGender(spark: SparkSession, params: Params) extends BaseTra
   }
 }
 ```
-Some explanation of the solution. The `watermark` part is for obtaining the fields that will allow the engine
+*Some explanation of the solution*. The `watermark` part is for obtaining the fields that will allow the engine
 to discard events that arrive really late. Normally, the engine would
-use a column in the data being received, rather than the start of processing
+use a column in the data being received, rather than the start time of processing
 by the engine. As I could not find a suitable column for `watermark` (NOTE: this is also provided by the user of the frameword
 via CLI args), I decided to use the timestamp field in kafka schema. So the part of the code below, is mainly
 checking that the watermark fields for the given topics exist and that a dataframe is present.
@@ -303,8 +308,15 @@ Execute with challenge specs -> `/bin/spark-submit --class com.joyn.challenge.st
 
 Make sure to check the path to jar
 
-## Testing
+## Testing and E2E execution
 Tried an approach with `MemoryStream` but unfortunately it is not working,
 the job runs until timeout but no output is obtained. I need more time to
 dig deeper and found the problem. To be honest I am using `Structured Streaming` for the
 first time, so there might be something very basic wrong. 
+
+Execution E2E is also not possible, at least not on my laptop, not sure if it is about
+resources, but the platform produces messages, however, the code
+is not able to reach the broker. Nevertheless, I consider there is enough
+design and implementation to judge despite the execution problem.
+
+Hope you like it and that we speak again :)
