@@ -1,0 +1,6 @@
+[
+  {"gender":  "M", "pageid":  "page1", "sum_viewtime":  6190, "count_userid": 5},
+  {"gender":  "F", "pageid":  "page1", "sum_viewtime":  31920, "count_userid": 5},
+  {"gender":  "M", "pageid":  "page3", "sum_viewtime":  6000, "count_userid": 5},
+  {"gender":  "F", "pageid":  "page3", "sum_viewtime": 40602, "count_userid": 5}
+]

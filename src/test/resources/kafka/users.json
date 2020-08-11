@@ -1,0 +1,5 @@
+[{"userid":  "user1", "gender":  "M", "registertime": 500, "regionid":  "1"},
+  {"userid":  "user5", "gender":  "F", "registertime": 8000, "regionid": "5"},
+  {"userid":  "user2", "gender":  "F", "registertime": 2500, "regionid": "2"},
+  {"userid":  "user3", "gender":  "M", "registertime": 4900, "regionid": "3"},
+  {"userid":  "user4", "gender":  "F", "registertime": 9800, "regionid": "4"}]
